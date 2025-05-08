@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Резюме Райти Галини</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        .light-theme {
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        .dark-theme {
+            background-color: #333;
+            color: #f5f5f5;
+        }
+        
+        .section {
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        
+        .light-theme .section {
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .dark-theme .section {
+            background-color: #444;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+        
+        .profile-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        .footer {
+            margin-top: 30px;
+            font-size: 0.8em;
+            padding: 10px;
+            border-top: 1px solid #ddd;
+        }
+        
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 24px;
+        }
+        
+        /* Модальне вікно */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            z-index: 100;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            max-width: 500px;
+            width: 100%;
+            color: #333;
+        }
+        
+        .close-modal {
+            float: right;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        /* Стилі для коментарів */
+        .comments-section {
+            margin-top: 30px;
+        }
+        
+        .comment {
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+        
+        .light-theme .comment {
+            background-color: #f0f0f0;
+        }
+        
+        .dark-theme .comment {
+            background-color: #555;
+        }
+        
+        /* Форма */
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body class="light-theme">
+    <button class="theme-toggle" id="themeToggle">🌙</button>
+    
+    <div class="section" style="text-align: center;">
+        <img src="raita.jpg" alt="Фото Райти Галини" class="profile-photo">
+        <h1>Резюме</h1>
+    </div>
+
+    <div class="section">
+        <h2>Контактні дані</h2>
+        <p>Ім'я Прізвище: Галина Райта</p>
+        <p>Email: <a href="mailto:halyna.raita.kbz.2022@lpnu.ua">halyna.raita.kbz.2022@lpnu.ua</a></p>
+        <p>Телефон: <a href="tel:+380967700383">+380967700383</a></p>
+        <p>Місто: Великі Мости, Україна</p>
+    </div>
+
+    <div class="section">
+        <h2>Про себе</h2>
+        <p>Я є діючим військовослужбовцем у в/ч 2418 Кінологічний навчальний центр.</p>
+    </div>
+
+    <div class="section">
+        <h2>Ціль</h2>
+        <p>Розвиватися у сфері кібербезпеки, вдосконалювати свої знання та навички, працювати над проєктами, що забезпечують інформаційну безпеку та стабільність.</p>
+    </div>
+
+    <div class="section">
+        <h2>Освіта</h2>
+        <ul>
+            <li>Львівський коледж "Інфокомунікацій" (2014-2015)</li>
+            <li>Національний університет "Львівська Політехніка" (2022-2026), спеціальність 125-Кібербезпека</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Навички</h2>
+        <ul>
+            <li>Адміністрування інформаційних і телекомунікаційних систем</li>
+            <li>Налаштування та обслуговування мережевого обладнання</li>
+            <li>Основи кібербезпеки та інформаційного захисту</li>
+            <li>Впевнений користувач Windows/Linux</li>
+            <li>Вміння працювати в команді та під тиском</li>
+            <li>Аналіз та вирішення технічних проблем</li>
+        </ul>
+    </div>
+
+    <div class="section comments-section">
+        <h2>Відгуки попередніх роботодавців</h2>
+        <div id="comments-container">
+            <!-- Коментарі будуть заповнені динамічно з JS -->
+        </div>
+    </div>
+
+    <!-- Модальне вікно з формою зворотнього зв'язку -->
+    <div class="modal" id="feedbackModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeModal">&times;</span>
+            <h2>Зворотній зв'язок</h2>
+            <form action="https://formspree.io/f/mzzrgkqd" method="POST" id="feedbackForm">
+                <div class="form-group">
+                    <label for="name">Ім'я:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Номер телефону:</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Повідомлення:</label>
+                    <textarea id="message" name="message" rows="4" required></textarea>
+                </div>
+                <button type="submit">Відправити</button>
+            </form>
+        </div>
+    </div>
+
+    <footer class="footer" id="localStorage-info">
+        <!-- Інформація з localStorage буде відображена тут -->
+    </footer>
+
+    <script>
+        // Збереження інформації про ОС та браузер в localStorage
+        function saveSystemInfo() {
+            const systemInfo = {
+                userAgent: navigator.userAgent,
+                platform: navigator.platform,
+                language: navigator.language,
+                cookiesEnabled: navigator.cookieEnabled,
+                screenResolution: `${window.screen.width}x${window.screen.height}`,
+                colorDepth: window.screen.colorDepth,
+                timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+                date: new Date().toISOString()
+            };
+            
+            localStorage.setItem('systemInfo', JSON.stringify(systemInfo));
+            displayLocalStorageInfo();
+        }
+        
+        // Відображення інформації з localStorage у футері
+        function displayLocalStorageInfo() {
+            const footerElement = document.getElementById('localStorage-info');
+            footerElement.innerHTML = '';
+            
+            // Перевіряємо кожен ключ у localStorage
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                let value = localStorage.getItem(key);
+                
+                try {
+                    // Спробуємо розпарсити JSON, якщо це можливо
+                    const parsedValue = JSON.parse(value);
+                    value = '';
+                    
+                    // Створюємо список для об'єкта
+                    const ul = document.createElement('ul');
+                    ul.style.listStyleType = 'none';
+                    ul.style.padding = '0';
+                    ul.style.margin = '10px 0';
+                    
+                    for (const [propKey, propValue] of Object.entries(parsedValue)) {
+                        const li = document.createElement('li');
+                        li.textContent = `${propKey}: ${propValue}`;
+                        ul.appendChild(li);
+                    }
+                    
+                    const div = document.createElement('div');
+                    const h4 = document.createElement('h4');
+                    h4.textContent = key;
+                    h4.style.margin = '10px 0 5px 0';
+                    
+                    div.appendChild(h4);
+                    div.appendChild(ul);
+                    footerElement.appendChild(div);
+                } catch (e) {
+                    // Якщо не JSON, просто відображаємо як текст
+                    const div = document.createElement('div');
+                    div.innerHTML = `<h4>${key}</h4><p>${value}</p>`;
+                    footerElement.appendChild(div);
+                }
+            }
+        }
+        
+        // Завантаження коментарів з JSONPlaceholder
+        function loadComments() {
+            const commentsContainer = document.getElementById('comments-container');
+            commentsContainer.innerHTML = '<p>Завантаження коментарів...</p>';
+            
+            // Замініть 1 на ваш номер варіанту (наприклад, 5)
+            fetch('https://jsonplaceholder.typicode.com/posts/5/comments')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Помилка при завантаженні коментарів');
+                    }
+                    return response.json();
+                })
+                .then(comments => {
+                    commentsContainer.innerHTML = '';
+                    
+                    if (comments.length === 0) {
+                        commentsContainer.innerHTML = '<p>Коментарі відсутні</p>';
+                        return;
+                    }
+                    
+                    comments.forEach(comment => {
+                        const commentElement = document.createElement('div');
+                        commentElement.classList.add('comment');
+                        
+                        commentElement.innerHTML = `
+                            <h3>${comment.name}</h3>
+                            <p><strong>Email:</strong> ${comment.email}</p>
+                            <p>${comment.body}</p>
+                        `;
+                        
+                        commentsContainer.appendChild(commentElement);
+                    });
+                })
+                .catch(error => {
+                    console.error('Помилка:', error);
+                    commentsContainer.innerHTML = `<p>Помилка при завантаженні коментарів: ${error.message}</p>`;
+                });
+        }
+        
+        // Функція для показу модального вікна з формою зворотнього зв'язку
+        function showFeedbackModal() {
+            const modal = document.getElementById('feedbackModal');
+            modal.style.display = 'flex';
+        }
+        
+        // Функція для закриття модального вікна
+        function closeFeedbackModal() {
+            const modal = document.getElementById('feedbackModal');
+            modal.style.display = 'none';
+        }
+        
+        // Перемикання теми (світла/темна)
+        function toggleTheme() {
+            const body = document.body;
+            const themeToggle = document.getElementById('themeToggle');
+            
+            if (body.classList.contains('light-theme')) {
+                body.classList.remove('light-theme');
+                body.classList.add('dark-theme');
+                themeToggle.textContent = '☀️';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.classList.remove('dark-theme');
+                body.classList.add('light-theme');
+                themeToggle.textContent = '🌙';
+                localStorage.setItem('theme', 'light');
+            }
+            
+            // Оновлюємо інформацію в футері після зміни теми
+            displayLocalStorageInfo();
+        }
+        
+        // Автоматичне переключення теми в залежності від часу доби
+        function setThemeByTime() {
+            const currentHour = new Date().getHours();
+            const savedTheme = localStorage.getItem('theme');
+            const body = document.body;
+            const themeToggle = document.getElementById('themeToggle');
+            
+            // Якщо користувач вже обрав тему - використовуємо її
+            if (savedTheme) {
+                if (savedTheme === 'dark') {
+                    body.classList.remove('light-theme');
+                    body.classList.add('dark-theme');
+                    themeToggle.textContent = '☀️';
+                } else {
+                    body.classList.remove('dark-theme');
+                    body.classList.add('light-theme');
+                    themeToggle.textContent = '🌙';
+                }
+                return;
+            }
+            
+            // Інакше встановлюємо тему відповідно до часу доби
+            // День з 7:00 до 21:00
+            if (currentHour >= 7 && currentHour < 21) {
+                body.classList.remove('dark-theme');
+                body.classList.add('light-theme');
+                themeToggle.textContent = '🌙';
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.classList.remove('light-theme');
+                body.classList.add('dark-theme');
+                themeToggle.textContent = '☀️';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+        
+        // Ініціалізація після завантаження сторінки
+        document.addEventListener('DOMContentLoaded', function() {
+            // Зберігаємо інформацію про систему
+            saveSystemInfo();
+            
+            // Встановлюємо тему відповідно до збереженого значення або часу доби
+            setThemeByTime();
+            
+            // Завантажуємо коментарі
+            loadComments();
+            
+            // Налаштовуємо перемикач теми
+            document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+            
+            // Налаштовуємо закриття модального вікна
+            document.getElementById('closeModal').addEventListener('click', closeFeedbackModal);
+            
+            // Показуємо модальне вікно через 1 хвилину
+            setTimeout(showFeedbackModal, 60000); // 60000 мс = 1 хвилина
+            
+            // При кліку поза модальним вікном - закриваємо його
+            window.addEventListener('click', function(event) {
+                const modal = document.getElementById('feedbackModal');
+                if (event.target === modal) {
+                    closeFeedbackModal();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
